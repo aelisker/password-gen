@@ -2,62 +2,59 @@
 
 
 // Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
-var lowerConfirm = function() {
+var criteria = [];
+
+var getLength = function() {
+  var passwordLength = window.prompt("Choose a length between eight and 128 characters.");
+  var passwordLength = parseInt(passwordLength);
+  if (passwordLength < 8 || passwordLength > 128) {
+    window.alert("Your password must be between eight and 128 characters. Please try again.");
+    return getLength();
+  }
+  if (isNaN(passwordLength)) {
+    window.alert("Your password must be a number. Please try again.");
+    return getLength();
+  }
+  //store length in array
+  criteria.push(['length',passwordLength]);
+
+  //take down criteria
+  getCriteria();
+}
+
+var getCriteria = function() {
   var lower = window.confirm("Would you like lower case characters?");
-  return lower;
-};
-var upperConfirm = function() {
   var upper = window.confirm("Would you like upper case characters?");
-  return upper;
-};
-var numberConfirm = function() {
   var number = window.confirm("Would you like numbers?");
-  return number;
-};
-var specialConfirm = function() {
   var special = window.confirm("Would you like special characters?");
-  return special;
-};
-
-var passwordInfo = {
-  lower: lowerConfirm(),
-  upper: upperConfirm(),
-  number: numberConfirm(),
-  special: specialConfirm(),
+  if (!lower && !upper && !number && !special) {
+    alert("You need at least one type of character. Please try again.");
+    return getCriteria();
+  }
+  //log booleans to array
+  criteria.push(['lower',lower]);
+  criteria.push(['upper',upper]);
+  criteria.push(['number',number]);
+  criteria.push(['special',special]);
+  
+  //has this logged?
+  alert(criteria);
 }
 
-if (passwordInfo.lower == false && passwordInfo.upper == false && passwordInfo.number == false && passwordInfo.special == false) {
-  alert("You need at least one type of character!");
-  lowerConfirm();
-}
-
-
-
-
-
-
-
-
-var getCritera = function() {
- 
-}
+// Add event listener to generate button
+generateBtn.addEventListener("click", getLength);
 
 // Write password to the #password input
 // function writePassword() {
-//   // var password = generatePassword();
-//   // var passwordText = document.querySelector("#password");  
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");  
 
-//   // passwordText.value = password;
-//   window.alert(lowerConfirm);
-
+//   passwordText.value = password;
 // }
 
 
-
-// Add event listener to generate button
-//generateBtn.addEventListener("click", getCritera);
 
 //Print to HTML with this
 // var test = "dddd";
