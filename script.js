@@ -50,8 +50,7 @@ var getCriteria = function() {
   criteria.number = number;
   criteria.special = special;
   
-  //has this logged?
-  console.log(criteria);
+  //console.log(criteria);
 
   //call function to create array with potential characters
   generatePotentialCharacters();
@@ -74,6 +73,27 @@ var generatePotentialCharacters = function() {
 
   //join all potential characters together in array
   potentialChar = potentialChar.join('');
+
+  var finalPassword = generatePassword();
+  writePassword(finalPassword);
+}
+
+function generatePassword() {
+  var generatedPassword = '';
+  for (var i = 0; criteria.passwordLength > i ; i++) {
+    var store = potentialChar[Math.floor(Math.random() * potentialChar.length)]
+    generatedPassword = generatedPassword.concat(store);
+  } 
+  console.log(generatedPassword);
+  return generatedPassword;
+}
+
+// Will use to write to page
+function writePassword(result) {
+  var password = result;
+  var passwordText = document.querySelector("#password");  
+
+  passwordText.value = password;
 }
 
 
