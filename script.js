@@ -84,6 +84,19 @@ function generatePassword() {
     var store = potentialChar[Math.floor(Math.random() * potentialChar.length)]
     generatedPassword = generatedPassword.concat(store);
   } 
+  if (criteria.lower) {
+    var lowerString = lowerCharArray.toString();
+    for (var i = 0; lowerCharArray.length; i++) {
+      var letterToTest = lowerString.charAt(i);
+      var tester = generatedPassword.includes(letterToTest);
+            if (tester) {
+              alert("Test");
+              break;
+            }
+      }
+  }
+      
+  
   console.log(generatedPassword);
   return generatedPassword;
 }
