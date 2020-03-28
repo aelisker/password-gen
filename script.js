@@ -85,22 +85,78 @@ function generatePassword() {
     var store = potentialChar[Math.floor(Math.random() * potentialChar.length)]
     generatedPassword = generatedPassword.concat(store);
   } 
-  //check if char is included in random password
+
+  //check if lower char is included in random password if selected
   if (criteria.lower) {
+
+    //convert array of lower case characters to string
     var lowerString = lowerCharArray.toString();
-    for (var i = 0; lowerCharArray.length; i++) {
+
+    //run for loop for length of all lower case characters
+    for (var i = 0; lowerCharArray[0].length > i; i++) {
+
+      //select character at index of string of characters and declare as variable
       var letterToTest = lowerString.charAt(i);
+
+      //search generated password for each letter, write value to boolean variable
       var lowerIncluded = generatedPassword.includes(letterToTest);  
+
+      //if true, break out because at least one char is included
       if (lowerIncluded) {
         break;
       }
-      if (lowerCharArray[0].length == (i - 1)) {
+
+      //if length of array item is i + 1, we've gone through all char and haven't found match. need to regen password.
+      if (lowerCharArray[0].length == (i + 1)) {
         return generatePassword();
       } 
-    }
-    
+    }   
   }
-      
+
+  //check if upper char is included in random password if selected
+  if (criteria.upper) {
+    var upperString = upperCharArray.toString();
+    for (var i = 0; upperCharArray[0].length > i; i++) {
+      var letterToTest = upperString.charAt(i);
+      var upperIncluded = generatedPassword.includes(letterToTest);  
+      if (upperIncluded) {
+        break;
+      }
+      if (upperCharArray[0].length == (i + 1)) {
+        return generatePassword();
+      } 
+    }   
+  }
+
+  //check if number is included in random password if selected
+  if (criteria.number) {
+    var numberString = numberCharArray.toString();
+    for (var i = 0; numberCharArray[0].length > i; i++) {
+      var letterToTest = numberString.charAt(i);
+      var numberIncluded = generatedPassword.includes(letterToTest);  
+      if (numberIncluded) {
+        break;
+      }
+      if (numberCharArray[0].length == (i + 1)) {
+        return generatePassword();
+      } 
+    }   
+  }
+
+  //check if special char is included in random password if selected
+  if (criteria.special) {
+    var specialString = specialCharArray.toString();
+    for (var i = 0; specialCharArray[0].length > i; i++) {
+      var letterToTest = specialString.charAt(i);
+      var specialIncluded = generatedPassword.includes(letterToTest);  
+      if (specialIncluded) {
+        break;
+      }
+      if (specialCharArray[0].length == (i + 1)) {
+        return generatePassword();
+      } 
+    }   
+  }
   
   console.log(generatedPassword);
   return generatedPassword;
