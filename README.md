@@ -10,4 +10,4 @@ You can also find a screenshot of the website below:
 ![password-generator-screenshot](./assets/images/screenshot.JPG)
 
 ## Model
-This was modeled off starter code found [here].(https://github.com/coding-boot-camp/friendly-parakeet)
+This was modeled off starter code found [here](https://github.com/coding-boot-camp/friendly-parakeet).
