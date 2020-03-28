@@ -79,21 +79,26 @@ var generatePotentialCharacters = function() {
 }
 
 function generatePassword() {
+  //generate the password by concat to empty string with random char from generated array
   var generatedPassword = '';
   for (var i = 0; criteria.passwordLength > i ; i++) {
     var store = potentialChar[Math.floor(Math.random() * potentialChar.length)]
     generatedPassword = generatedPassword.concat(store);
   } 
+  //check if char is included in random password
   if (criteria.lower) {
     var lowerString = lowerCharArray.toString();
     for (var i = 0; lowerCharArray.length; i++) {
       var letterToTest = lowerString.charAt(i);
-      var tester = generatedPassword.includes(letterToTest);
-            if (tester) {
-              alert("Test");
-              break;
-            }
+      var lowerIncluded = generatedPassword.includes(letterToTest);  
+      if (lowerIncluded) {
+        break;
       }
+      if (lowerCharArray[0].length == (i - 1)) {
+        return generatePassword();
+      } 
+    }
+    
   }
       
   
